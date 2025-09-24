@@ -36,8 +36,12 @@ export const getUserByEmail = async (email: string) => {
 
 //Get issues
 export async function getIssues() {
+  const session = await getSession()
+  if (!session) return null
+
   try {
     const result = await db.query.issues.findMany({
+      where: (issues, { eq }) => eq(issues.userId, session.userId),
       with: {
         user: true,
       },
