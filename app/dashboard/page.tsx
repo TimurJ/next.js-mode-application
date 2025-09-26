@@ -10,6 +10,10 @@ import { ISSUE_STATUS, ISSUE_PRIORITY } from '@/db/schema'
 export default async function DashboardPage() {
   const issues = await getIssues()
 
+  if (!issues) {
+    return null
+  }
+
   return (
     <div>
       <div className="flex items-center justify-between mb-8">

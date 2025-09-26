@@ -37,6 +37,8 @@ export const getUserByEmail = async (email: string) => {
 
 //Get issues
 export async function getIssues() {
+  await mockDelay(500)
+
   const session = await getSession()
   if (!session) return null
 
