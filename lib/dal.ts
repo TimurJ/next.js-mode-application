@@ -6,7 +6,7 @@ import { issues, users } from '@/db/schema'
 import { mockDelay } from './utils'
 
 //Current user
-export const getCurrentUser = async () => {
+export const getCurrentUser = cache(async () => {
   const session = await getSession()
   if (!session) return null
 
@@ -21,7 +21,7 @@ export const getCurrentUser = async () => {
     console.error('Error getting user by ID:', error)
     return null
   }
-}
+})
 
 //Get user by email
 export const getUserByEmail = async (email: string) => {
